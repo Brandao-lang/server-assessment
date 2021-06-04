@@ -6,6 +6,13 @@
   <body class="container">
     <button id="complimentButton">Get a compliment</button>
     <button id="fortuneButton">Get a fortune</button>
+    <button id="funIdea">Get an activity</button>
+    <button id="wisdom-btn">Recieve wisdom</button>
+    <form>
+      <label for="content">add name</label>
+      <input type="text" id="content" name="content" />
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -26,6 +33,41 @@
             const data = response.data;
             alert(data);
           });
+      };
+    </script>
+    <script>
+      document.getElementById("funIdea").onclick = function () {
+        axios.get("http://localhost:4000/api/idea").then(function (response) {
+          const data = response.data;
+          alert(data);
+        });
+      };
+    </script>
+
+    <script>
+      //this was an attmept to take in a name and bring back a greeting with the name provided in the form above - was not able to complete
+      const btn = document.getElementById("submitBtn");
+      const text = document.getElementById("content");
+      const form = document.querySelector("form");
+
+      function handleSubmit(event) {
+        event.preventDefault();
+        const data = new FormData(event.target);
+        const value = data.get("content");
+        console.log({ value });
+        axios
+          .post("http://localhost:4000/api/goals", value)
+          .then(console.log(res.data));
+      }
+
+      form.addEventListener("submit", handleSubmit);
+    </script>
+    <script>
+      document.getElementById("wisdom-btn").onclick = function () {
+        axios.get("http://localhost:4000/api/wisdom").then(function (response) {
+          const data = response.data;
+          alert(data);
+        });
       };
     </script>
   </body>

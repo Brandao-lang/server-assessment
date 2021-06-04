@@ -34,4 +34,35 @@ app.get("/api/fortune", (req, res) => {
   
 });
 
+app.get("/api/idea", (req, res) => {
+  const ideas = ["Learn a new language!",
+					 "Read a book!",
+					 "Exercise!",
+           "reach out to friends and family!",
+           "learn a new skill!",
+           "Get organized!"
+  ];
+
+  let randomIndex = Math.floor(Math.random() * ideas.length);
+  let randomidea = ideas[randomIndex];
+  res.status(200).send(randomidea);
+  
+});
+
+app.post("/api/goals", (req, res) => {
+  const greeting = `You are doing great, ${req.data.value}`
+  res.status(200).send(greeting)
+});
+
+app.get("/api/wisdom", (req, res) => {
+  const message = "Life is what you make of it"
+  res.status(200).send(message);
+  });
+
+
+
+
+
+
+
 app.listen(4000, () => console.log("Server running on 4000"));
